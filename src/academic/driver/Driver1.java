@@ -297,7 +297,7 @@ public class Driver1 {
                     for (Student evenStudent : evenSemesterStudents) {
                         if (oddStudent.getCode().equals(evenStudent.getCode())) {
                             if (oddStudent.getGpa() < evenStudent.getGpa()) {
-                                bestStudents.add(oddStudent.getCode() + "|" + oddStudent.getGrade() + "/" + evenStudent.getGrade());
+                                // bestStudents.add(oddStudent.getCode() + "|" + oddStudent.getGrade() + "/" + evenStudent.getGrade());
                             }
                         }
                     }
