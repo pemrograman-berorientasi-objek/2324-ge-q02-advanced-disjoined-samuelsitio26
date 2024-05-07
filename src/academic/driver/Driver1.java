@@ -375,8 +375,7 @@ public class Driver1 {
         }
 
         for (String student : bestStudentsList) {
-            System.out.println("12S20002|B/A");
-            System.out.println("12S20002|B/A");
+            System.out.println(student);
         }
         
         masukan.close();
