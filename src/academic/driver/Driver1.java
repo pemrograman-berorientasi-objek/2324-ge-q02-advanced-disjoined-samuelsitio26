@@ -268,11 +268,11 @@ public class Driver1 {
                 String academicYear = inputArray[1];
                 String semester = inputArray[2];
             
-                // Membuat daftar mahasiswa dari semester ganjil dan genap
+
                 ArrayList<Student> oddSemesterStudents = new ArrayList<>();
                 ArrayList<Student> evenSemesterStudents = new ArrayList<>();
             
-                // Mengumpulkan nilai mahasiswa dari semester ganjil dan genap
+
                 for (Enrollment<String, String> enrollment : enrollments) {
                     if (enrollment.getTahun().equals(academicYear) && enrollment.getEven().equals("odd")) {
                         for (Student student : students) {
@@ -291,7 +291,6 @@ public class Driver1 {
                     }
                 }
             
-                // Mengidentifikasi mahasiswa terbaik berdasarkan performa mereka
                 ArrayList<String> bestStudents = new ArrayList<>();
                 for (Student oddStudent : oddSemesterStudents) {
                     for (Student evenStudent : evenSemesterStudents) {
@@ -303,7 +302,7 @@ public class Driver1 {
                     }
                 }
             
-                // Menampilkan mahasiswa terbaik
+
                 for (String student : bestStudents) {
                     System.out.println(student);
                 }
@@ -314,7 +313,7 @@ public class Driver1 {
                     bestStudentsList.add(inputArray[i]);
                 }
             
-                // Menampilkan mahasiswa terbaik
+
                 for (String student : bestStudentsList) {
                     System.out.println(student);
                 }
