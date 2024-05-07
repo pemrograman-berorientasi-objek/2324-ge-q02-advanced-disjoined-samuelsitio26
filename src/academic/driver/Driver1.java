@@ -264,60 +264,60 @@ public class Driver1 {
                 }
             } 
             
-            // else if (command.equals("find-the-best-student")) {
-            //     String academicYear = inputArray[1];
-            //     String semester = inputArray[2];
+            else if (command.equals("find-the-best-student")) {
+                String academicYear = inputArray[1];
+                String semester = inputArray[2];
             
-            //     // Membuat daftar mahasiswa dari semester ganjil dan genap
-            //     ArrayList<Student> oddSemesterStudents = new ArrayList<>();
-            //     ArrayList<Student> evenSemesterStudents = new ArrayList<>();
+                // Membuat daftar mahasiswa dari semester ganjil dan genap
+                ArrayList<Student> oddSemesterStudents = new ArrayList<>();
+                ArrayList<Student> evenSemesterStudents = new ArrayList<>();
             
-            //     // Mengumpulkan nilai mahasiswa dari semester ganjil dan genap
-            //     for (Enrollment<String, String> enrollment : enrollments) {
-            //         if (enrollment.getTahun().equals(academicYear) && enrollment.getEven().equals("odd")) {
-            //             for (Student student : students) {
-            //                 if (student.getCode().equals(enrollment.getNim())) {
-            //                     oddSemesterStudents.add(student);
-            //                     break;
-            //                 }
-            //             }
-            //         } else if (enrollment.getTahun().equals(academicYear) && enrollment.getEven().equals("even")) {
-            //             for (Student student : students) {
-            //                 if (student.getCode().equals(enrollment.getNim())) {
-            //                     evenSemesterStudents.add(student);
-            //                     break;
-            //                 }
-            //             }
-            //         }
-            //     }
+                // Mengumpulkan nilai mahasiswa dari semester ganjil dan genap
+                for (Enrollment<String, String> enrollment : enrollments) {
+                    if (enrollment.getTahun().equals(academicYear) && enrollment.getEven().equals("odd")) {
+                        for (Student student : students) {
+                            if (student.getCode().equals(enrollment.getNim())) {
+                                oddSemesterStudents.add(student);
+                                break;
+                            }
+                        }
+                    } else if (enrollment.getTahun().equals(academicYear) && enrollment.getEven().equals("even")) {
+                        for (Student student : students) {
+                            if (student.getCode().equals(enrollment.getNim())) {
+                                evenSemesterStudents.add(student);
+                                break;
+                            }
+                        }
+                    }
+                }
             
-            //     // Mengidentifikasi mahasiswa terbaik berdasarkan performa mereka
-            //     ArrayList<String> bestStudents = new ArrayList<>();
-            //     for (Student oddStudent : oddSemesterStudents) {
-            //         for (Student evenStudent : evenSemesterStudents) {
-            //             if (oddStudent.getCode().equals(evenStudent.getCode())) {
-            //                 if (oddStudent.getGpa() < evenStudent.getGpa()) {
-            //                     bestStudents.add(oddStudent.getCode() + "|" + oddStudent.getGrade() + "/" + evenStudent.getGrade());
-            //                 }
-            //             }
-            //         }
-            //     }
+                // Mengidentifikasi mahasiswa terbaik berdasarkan performa mereka
+                ArrayList<String> bestStudents = new ArrayList<>();
+                for (Student oddStudent : oddSemesterStudents) {
+                    for (Student evenStudent : evenSemesterStudents) {
+                        if (oddStudent.getCode().equals(evenStudent.getCode())) {
+                            if (oddStudent.getGpa() < evenStudent.getGpa()) {
+                                // bestStudents.add(oddStudent.getCode() + "|" + oddStudent.getGrade() + "/" + evenStudent.getGrade());
+                            }
+                        }
+                    }
+                }
             
-            //     // Menampilkan mahasiswa terbaik
-            //     for (String student : bestStudents) {
-            //         System.out.println(student);
-            //     }
-            // } else if (command.equals("add-best-student")) {
-            //     // Setelah mendapatkan nama-nama mahasiswa terbaik, tambahkanlah mereka ke dalam list mahasiswa terbaik
-            //     ArrayList<String> bestStudentsList = new ArrayList<>();
-            //     for (int i = 1; i < inputArray.length; i++) {
-            //         bestStudentsList.add(inputArray[i]);
-            //     }
+                // Menampilkan mahasiswa terbaik
+                for (String student : bestStudents) {
+                    System.out.println(student);
+                }
+            } else if (command.equals("add-best-student")) {
+                // Setelah mendapatkan nama-nama mahasiswa terbaik, tambahkanlah mereka ke dalam list mahasiswa terbaik
+                ArrayList<String> bestStudentsList = new ArrayList<>();
+                for (int i = 1; i < inputArray.length; i++) {
+                    bestStudentsList.add(inputArray[i]);
+                }
             
-            //     // Menampilkan mahasiswa terbaik
-            //     for (String student : bestStudentsList) {
-            //         System.out.println(student);
-            //     }
+                // Menampilkan mahasiswa terbaik
+                for (String student : bestStudentsList) {
+                    System.out.println(student);
+                }
             }
             
 
