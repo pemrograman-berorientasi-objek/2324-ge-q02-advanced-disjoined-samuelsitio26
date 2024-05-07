@@ -384,10 +384,6 @@ public class Driver1 {
                 System.out.println(enrollment.toString());
             }
         }
-
-        System.out.println("12S20002|B/A");
-        System.out.println("12S20002|B/A");
-
         masukan.close();
     }
 
