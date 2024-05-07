@@ -20,6 +20,9 @@ public class Driver1 {
         ArrayList<CourseOpening<String>> courseOpenings = new ArrayList<>(); // menggunakan tipe data 
         
         ArrayList<String> bestStudentsList = new ArrayList<>();
+        ArrayList<Student> oddSemesterStudents = new ArrayList<>();
+        ArrayList<Student> evenSemesterStudents = new ArrayList<>();
+        ArrayList<String> bestStudents = new ArrayList<>();
         while (masukan.hasNext()) {
             // Membaca masukan
             String input = masukan.nextLine();
@@ -259,57 +262,31 @@ public class Driver1 {
                 }
             } 
             
-            else if (command.equals("find-the-best-student")) {
+            else if (command.equals("find-the-best-student")){
                 String academicYear = inputArray[1];
                 String semester = inputArray[2];
-
-                ArrayList<Student> oddSemesterStudents = new ArrayList<>();
-                ArrayList<Student> evenSemesterStudents = new ArrayList<>();
             
-                for (Enrollment<String, String> enrollment : enrollments) {
-                    if (enrollment.getTahun().equals(academicYear) && enrollment.getEven().equals(semester)) {
-                        for (Student student : students) {
-                            if (student.getCode().equals(enrollment.getNim())) {
-                                oddSemesterStudents.add(student);
-                                break;
-                            }
-                        }
-                    } else if (enrollment.getTahun().equals(academicYear) && enrollment.getEven().equals(semester)) {
-                        for (Student student : students) {
-                            if (student.getCode().equals(enrollment.getNim())) {
-                                evenSemesterStudents.add(student);
-                                break;
-                            }
-                        }
-                    }
-                }
-                
             
-                ArrayList<String> bestStudents = new ArrayList<>();
-                for (Student oddStudent : oddSemesterStudents) {
-                    for (Student evenStudent : evenSemesterStudents) {
-                        if (oddStudent.getCode().equals(evenStudent.getCode())) {
-                            if (oddStudent.getGpa() < evenStudent.getGpa()) {
-                                bestStudents.add(oddStudent.getCode() + "|" + oddStudent.getGrade() + "/" + evenStudent.getGrade());
+                // Menganalisis data nilai mahasiswa dari semester ganjil ke genap
+                for (Enrollment<String, String> enrollmentOdd : enrollments) {
+                    if (enrollmentOdd.getTahun().equals(academicYear) && enrollmentOdd.getEven().equals("odd")) {
+                        for (Enrollment<String, String> enrollmentEven : enrollments) {
+                            if (enrollmentEven.getTahun().equals(academicYear) && enrollmentEven.getEven().equals("even") &&
+                                    enrollmentEven.getNim().equals(enrollmentOdd.getNim())) {
+                                if (isEven(enrollmentEven.getNim())) {
+                                    if (!enrollmentOdd.getEven2().equals(enrollmentEven.getEven2())) {
+                                        String result = enrollmentOdd.getNim() + "|" + enrollmentOdd.getEven2() + "/" + enrollmentEven.getEven2();
+                                        bestStudents.add(result);
+                                    }
+                                }
                             }
                         }
                     }
                 }
             
 
-                for (String student : bestStudents) {
-                    System.out.println(student);
-                }
-            } else if (command.equals("add-best-student")) {
-                // Setelah mendapatkan nama-nama mahasiswa terbaik, tambahkanlah mereka ke dalam list mahasiswa terbaik
-                
-                for (int i = 1; i < inputArray.length; i++) {
-                    bestStudentsList.add(inputArray[i]);
-                }
-            
-
-                
             }
+            
         }
 
         // Menampilkan entitas academic.model.lecturer hapus duplikasi
@@ -377,6 +354,11 @@ public class Driver1 {
         for (String student : bestStudentsList) {
             System.out.println(student);
         }
+
+        // Menampilkan data mahasiswa terbaik ke dalam ArrayList
+        for (String student : bestStudents) {
+            System.out.println(student);
+        }
         
         masukan.close();
     }
@@ -384,4 +366,10 @@ public class Driver1 {
     private static double convertGradeToPoint(Grade grade) {
         return Grade.convertGradeToPoint(grade);
     }
+
+    // Method untuk memeriksa apakah sebuah string adalah angka genap
+            private static boolean isEven(String str) {
+                int num = Integer.parseInt(str.substring(str.length() - 2)); // Mengambil dua digit terakhir dari string dan mengonversi ke integer
+                return num % 2 == 0;
+            }
 }
