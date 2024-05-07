@@ -2,6 +2,8 @@ package academic.driver;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+
 import academic.model.*;
 /**
  * @author 12S22032 Samuel Sitio
@@ -20,8 +22,6 @@ public class Driver1 {
         ArrayList<CourseOpening<String>> courseOpenings = new ArrayList<>(); // menggunakan tipe data 
         
         ArrayList<String> bestStudentsList = new ArrayList<>();
-        ArrayList<Student> oddSemesterStudents = new ArrayList<>();
-        ArrayList<Student> evenSemesterStudents = new ArrayList<>();
         ArrayList<String> bestStudents = new ArrayList<>();
         while (masukan.hasNext()) {
             // Membaca masukan
@@ -265,9 +265,7 @@ public class Driver1 {
             else if (command.equals("find-the-best-student")){
                 String academicYear = inputArray[1];
                 String semester = inputArray[2];
-            
-            
-                // Menganalisis data nilai mahasiswa dari semester ganjil ke genap
+        
                 for (Enrollment<String, String> enrollmentOdd : enrollments) {
                     if (enrollmentOdd.getTahun().equals(academicYear) && enrollmentOdd.getEven().equals("odd")) {
                         for (Enrollment<String, String> enrollmentEven : enrollments) {
@@ -283,10 +281,13 @@ public class Driver1 {
                         }
                     }
                 }
-            
 
+            } else if (command.equals("add-best-student")){
+                String studentbest = inputArray [1];
+
+                
             }
-            
+                
         }
 
         // Menampilkan entitas academic.model.lecturer hapus duplikasi
@@ -367,9 +368,8 @@ public class Driver1 {
         return Grade.convertGradeToPoint(grade);
     }
 
-    // Method untuk memeriksa apakah sebuah string adalah angka genap
-            private static boolean isEven(String str) {
-                int num = Integer.parseInt(str.substring(str.length() - 2)); // Mengambil dua digit terakhir dari string dan mengonversi ke integer
-                return num % 2 == 0;
-            }
+    private static boolean isEven(String str) {
+        int num = Integer.parseInt(str.substring(str.length() - 2)); 
+        return num % 2 == 0;
+    }
 }
