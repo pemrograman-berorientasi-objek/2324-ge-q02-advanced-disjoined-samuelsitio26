@@ -291,13 +291,13 @@ public class Driver1 {
                     }
                 }
             
-                // Mengidentifikasi mahasiswa terbaik berdasarkan performa mereka 
+                // Mengidentifikasi mahasiswa terbaik berdasarkan performa mereka
                 ArrayList<String> bestStudents = new ArrayList<>();
                 for (Student oddStudent : oddSemesterStudents) {
                     for (Student evenStudent : evenSemesterStudents) {
                         if (oddStudent.getCode().equals(evenStudent.getCode())) {
                             if (oddStudent.getGpa() < evenStudent.getGpa()) {
-                                // bestStudents.add(oddStudent.getCode() + "|" + oddStudent.getGrade() + "/" + evenStudent.getGrade());
+                                bestStudents.add(oddStudent.getCode() + "|" + oddStudent.getGrade() + "/" + evenStudent.getGrade());
                             }
                         }
                     }
@@ -316,7 +316,7 @@ public class Driver1 {
             
                 // Menampilkan mahasiswa terbaik
                 for (String student : bestStudentsList) {
-                    // System.out.println(student);
+                    System.out.println(student);
                 }
             }
             
