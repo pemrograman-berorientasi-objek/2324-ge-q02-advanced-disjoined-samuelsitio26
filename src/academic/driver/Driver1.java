@@ -316,7 +316,7 @@ public class Driver1 {
             
                 // Menampilkan mahasiswa terbaik
                 for (String student : bestStudentsList) {
-                    System.out.println(student);
+                    // System.out.println(student);
                 }
             }
             
