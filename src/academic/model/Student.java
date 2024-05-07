@@ -73,4 +73,8 @@ public class Student extends orang {
     public String toString() {
         return super.getId() + "|" + super.getName() + "|" + this.tahun + "|" + this.progamstudy;
     }
+
+    public String getGrade() {
+        return null;
+    }
 }

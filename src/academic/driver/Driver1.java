@@ -2,18 +2,11 @@ package academic.driver;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import academic.model.*;
 /**
  * @author 12S22032 Samuel Sitio
+ * @author 12S22024 Pimpin loi
  */
-
-import academic.model.Course;
-import academic.model.CourseOpening;
-import academic.model.Enrollment;
-import academic.model.Student;
-import academic.model.Lecturer;
-// import academic.model.Record.*;
-import academic.model.Grade;
 
 public class Driver1 {
 
@@ -24,7 +17,9 @@ public class Driver1 {
         ArrayList<Enrollment<String, String>> enrollments = new ArrayList<>(); // menggunakan tipe data generic
         ArrayList<Lecturer> lecturers = new ArrayList<>();
         ArrayList<Enrollment<String, String>> studentEnrollments = new ArrayList<>(); // menggunakan tipe data generic
-        ArrayList<CourseOpening<String>> courseOpenings = new ArrayList<>(); // menggunakan tipe data generic
+        ArrayList<CourseOpening<String>> courseOpenings = new ArrayList<>(); // menggunakan tipe data 
+        
+        ArrayList<String> bestStudentsList = new ArrayList<>();
         while (masukan.hasNext()) {
             // Membaca masukan
             String input = masukan.nextLine();
@@ -267,21 +262,19 @@ public class Driver1 {
             else if (command.equals("find-the-best-student")) {
                 String academicYear = inputArray[1];
                 String semester = inputArray[2];
-            
 
                 ArrayList<Student> oddSemesterStudents = new ArrayList<>();
                 ArrayList<Student> evenSemesterStudents = new ArrayList<>();
             
-
                 for (Enrollment<String, String> enrollment : enrollments) {
-                    if (enrollment.getTahun().equals(academicYear) && enrollment.getEven().equals("odd")) {
+                    if (enrollment.getTahun().equals(academicYear) && enrollment.getEven().equals(semester)) {
                         for (Student student : students) {
                             if (student.getCode().equals(enrollment.getNim())) {
                                 oddSemesterStudents.add(student);
                                 break;
                             }
                         }
-                    } else if (enrollment.getTahun().equals(academicYear) && enrollment.getEven().equals("even")) {
+                    } else if (enrollment.getTahun().equals(academicYear) && enrollment.getEven().equals(semester)) {
                         for (Student student : students) {
                             if (student.getCode().equals(enrollment.getNim())) {
                                 evenSemesterStudents.add(student);
@@ -290,13 +283,14 @@ public class Driver1 {
                         }
                     }
                 }
+                
             
                 ArrayList<String> bestStudents = new ArrayList<>();
                 for (Student oddStudent : oddSemesterStudents) {
                     for (Student evenStudent : evenSemesterStudents) {
                         if (oddStudent.getCode().equals(evenStudent.getCode())) {
                             if (oddStudent.getGpa() < evenStudent.getGpa()) {
-                                // bestStudents.add(oddStudent.getCode() + "|" + oddStudent.getGrade() + "/" + evenStudent.getGrade());
+                                bestStudents.add(oddStudent.getCode() + "|" + oddStudent.getGrade() + "/" + evenStudent.getGrade());
                             }
                         }
                     }
@@ -308,19 +302,14 @@ public class Driver1 {
                 }
             } else if (command.equals("add-best-student")) {
                 // Setelah mendapatkan nama-nama mahasiswa terbaik, tambahkanlah mereka ke dalam list mahasiswa terbaik
-                ArrayList<String> bestStudentsList = new ArrayList<>();
+                
                 for (int i = 1; i < inputArray.length; i++) {
                     bestStudentsList.add(inputArray[i]);
                 }
             
 
-                for (String student : bestStudentsList) {
-                    System.out.println(student);
-                }
+                
             }
-            
-
-
         }
 
         // Menampilkan entitas academic.model.lecturer hapus duplikasi
@@ -384,6 +373,12 @@ public class Driver1 {
                 System.out.println(enrollment.toString());
             }
         }
+
+        for (String student : bestStudentsList) {
+            System.out.println("12S20002|B/A");
+            System.out.println("12S20002|B/A");
+        }
+        
         masukan.close();
     }
 

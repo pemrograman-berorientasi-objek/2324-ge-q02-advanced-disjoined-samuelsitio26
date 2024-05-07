@@ -1,5 +1,10 @@
 package academic.model;
 
+/**
+ * @author 12S22032 Samuel Sitio
+ * @author 12S22024 Pimpin loi
+ */
+
 public class academic {
     protected String code;
 
