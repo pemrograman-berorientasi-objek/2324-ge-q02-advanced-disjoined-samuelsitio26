@@ -291,7 +291,7 @@ public class Driver1 {
                     }
                 }
             
-                // Mengidentifikasi mahasiswa terbaik berdasarkan performa mereka
+                // Mengidentifikasi mahasiswa terbaik berdasarkan performa mereka 
                 ArrayList<String> bestStudents = new ArrayList<>();
                 for (Student oddStudent : oddSemesterStudents) {
                     for (Student evenStudent : evenSemesterStudents) {
